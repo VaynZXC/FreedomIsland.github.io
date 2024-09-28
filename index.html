@@ -1,37 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Freedom Island</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
         }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .button-group a {
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 18px;
+            border-radius: 25px;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-group a:nth-child(1) {
+            background: linear-gradient(90deg, #43e97b, #38f9d7);
+        }
+
+        .button-group a:nth-child(2) {
+            background: linear-gradient(90deg, #2196F3, #6dd5ed);
+        }
+
+        .button-group a:nth-child(3) {
+            background: linear-gradient(90deg, #ff9966, #ff5e62);
+        }
+
+        .button-group a:nth-child(4) {
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+        }
+
+        #profile {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Кнопка "Вернуться на главную" */
+        .profile-link {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 20px;
+            font-size: 18px;
+            border-radius: 25px;
+            color: white;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 8px;
+        }
+
+        .profile-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
     </style>
 </head>
 <body>
-    <h1>Добро пожаловать в наше Web App!</h1>
-    <p id="user-info"></p>
-    <button onclick="sendMessage()">Отправить сообщение в бот</button>
 
-    <script>
-        // Инициализация Web App
-        let tg = window.Telegram.WebApp;
-        tg.expand();  // Развернуть на весь экран
+<!-- Главная страница -->
+<div id="home" class="container">
+    <h1>Добро пожаловать в Freedom Island</h1>
+    <div class="button-group">
+        <a href="#">Оформить подписку</a>
+        <a href="#">Тарифы и цены</a>
+        <a href="#">Попробовать бесплатно</a>
+        <a href="#" onclick="showProfile()">Личный кабинет</a>
+    </div>
+</div>
 
-        // Получение данных о пользователе
-        const user = tg.initDataUnsafe.user;
-        const userInfo = document.getElementById('user-info');
-        userInfo.textContent = `Привет, ${user.first_name}!`;
+<!-- Страница личного кабинета -->
+<div id="profile" class="container">
+    <h2>Личный кабинет</h2>
+    <p>Имя пользователя: Иван Иванов</p>
+    <p>Email: ivan.ivanov@example.com</p>
+    <p>Текущий тариф: Премиум</p>
+    <a href="#" class="profile-link" onclick="showHome()">Вернуться на главную</a>
+</div>
 
-        // Отправка данных обратно в бот
-        function sendMessage() {
-            tg.sendData("Это сообщение было отправлено из Web App!");
-        }
-    </script>
+<script>
+    function showProfile() {
+        // Показать личный кабинет и скрыть главную страницу
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('profile').style.display = 'block';
+    }
+
+    function showHome() {
+        // Вернуться на главную страницу и скрыть личный кабинет
+        document.getElementById('profile').style.display = 'none';
+        document.getElementById('home').style.display = 'block';
+    }
+</script>
+
 </body>
 </html>
