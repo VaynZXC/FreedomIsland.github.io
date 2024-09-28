@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в наше Web App!</h1>
+    <p id="user-info"></p>
+    <button onclick="sendMessage()">Отправить сообщение в бот</button>
+
+    <script>
+        // Инициализация Web App
+        let tg = window.Telegram.WebApp;
+        tg.expand();  // Развернуть на весь экран
+
+        // Получение данных о пользователе
+        const user = tg.initDataUnsafe.user;
+        const userInfo = document.getElementById('user-info');
+        userInfo.textContent = `Привет, ${user.first_name}!`;
+
+        // Отправка данных обратно в бот
+        function sendMessage() {
+            tg.sendData("Это сообщение было отправлено из Web App!");
+        }
+    </script>
+</body>
+</html>
